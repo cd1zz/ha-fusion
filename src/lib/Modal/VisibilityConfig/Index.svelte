@@ -218,7 +218,7 @@
 						{#if !item?.collapsed}
 							<div class="content" transition:slide={{ duration: $motion, easing: expoOut }}>
 								{#if item?.condition === 'state' && !item?.collapsed}
-									<StateCondition {item} bind:items />
+									<StateCondition {item} bind:items {isItemTemplate} />
 								{:else if item?.condition === 'numeric_state' && !item?.collapsed}
 									<NumericCondition {item} bind:items />
 								{:else if item?.condition === 'screen' && !item?.collapsed}
@@ -258,7 +258,7 @@
 															transition:slide={{ duration: $motion, easing: expoOut }}
 														>
 															{#if subItem?.condition === 'state' && !subItem?.collapsed}
-																<StateCondition item={subItem} bind:items={item.conditions} />
+																<StateCondition item={subItem} bind:items={item.conditions} {isItemTemplate} />
 															{:else if subItem?.condition === 'numeric_state' && !subItem?.collapsed}
 																<NumericCondition item={subItem} bind:items={item.conditions} />
 															{:else if subItem?.condition === 'screen' && !subItem?.collapsed}
