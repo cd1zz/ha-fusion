@@ -37,6 +37,133 @@ export function handleVisibility($editMode: boolean, sections: Section[], states
 }
 
 /**
+ * Filters items based on their visibility conditions
+ * Similar to handleVisibility but for individual items
+ */
+export function handleItemVisibility($editMode: boolean, items: any[], states: HassEntities) {
+	if (!items) return [];
+	
+	return items.filter((item: any) => {
+		return handleAllConditionsForItem($editMode, states, item);
+	});
+}
+
+/**
+ * Handles every item in handleItemVisibility
+ */
+export function handleAllConditionsForItem($editMode: boolean, $states: HassEntities, item: any) {
+	// early return if no states or visibility array
+	if (!$states || !item?.visibility) return true;
+
+	return item.visibility.every((condition: any) =>
+		validateConditionForItem($editMode, $states, item, condition)
+	);
+}
+
+/**
+ * Validates every condition for an item
+ */
+export function validateConditionForItem(
+	$editMode: boolean,
+	$states: HassEntities,
+	item: any,
+	condition: Condition
+): boolean {
+	switch (condition?.condition) {
+		case 'and':
+			return handleAndForItem($editMode, $states, item, condition);
+		case 'or':
+			return handleOrForItem($editMode, $states, item, condition);
+		case 'state':
+			return handleState($states, condition);
+		case 'numeric_state':
+			return handleNumericState($states, condition);
+		case 'screen':
+			return handleScreenForItem($editMode, item, condition);
+		default:
+			return false;
+	}
+}
+
+/**
+ * And condition handler for items
+ */
+export function handleAndForItem(
+	$editMode: boolean,
+	$states: HassEntities,
+	item: any,
+	condition: Condition
+) {
+	if (!condition.conditions?.length) return false;
+
+	return (
+		condition.conditions?.every((subCondition: Condition) =>
+			validateConditionForItem($editMode, $states, item, subCondition)
+		) ?? false
+	);
+}
+
+/**
+ * Or condition handler for items
+ */
+export function handleOrForItem(
+	$editMode: boolean,
+	$states: HassEntities,
+	item: any,
+	condition: Condition
+) {
+	if (!condition.conditions?.length) return false;
+
+	return (
+		condition.conditions?.some((subCondition: Condition) =>
+			validateConditionForItem($editMode, $states, item, subCondition)
+		) ?? false
+	);
+}
+
+/**
+ * Screen condition handler for items
+ */
+export function handleScreenForItem($editMode: boolean, item: any, conditions: Condition) {
+	const id = item?.id;
+	if (!id || !conditions?.media_query) return false;
+
+	// prevent infinite loop
+	if ($editMode) {
+		return window?.matchMedia(conditions?.media_query)?.matches;
+	}
+
+	const store = get(mediaQueries);
+
+	// cleanup
+	const prev = store?.[id];
+	if (prev?.mql && prev?.listener) {
+		prev?.mql?.removeEventListener('change', prev?.listener);
+		delete prev?.listener;
+	}
+
+	const mql = window?.matchMedia(conditions?.media_query);
+
+	const listener = () => {
+		mediaQueries?.update((mqs: any) => ({
+			...mqs,
+			[id]: { ...mqs?.[id], matches: mql?.matches }
+		}));
+	};
+
+	mql?.addEventListener('change', listener);
+
+	mediaQueries?.update((mqs: any) => {
+		return {
+			...mqs,
+			[id]: { mql, listener, matches: mql?.matches }
+		};
+	});
+
+	return mql?.matches;
+}
+
+/**
  * Handles every section in handleVisibility
  */
 export function handleAllConditions($editMode: boolean, $states: HassEntities, section: Section) {

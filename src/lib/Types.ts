@@ -100,6 +100,9 @@ export interface ButtonItem {
 			service?: string;
 		};
 	};
+	visibility?: {
+		conditions?: Condition[];
+	}[];
 }
 
 export interface Template {
