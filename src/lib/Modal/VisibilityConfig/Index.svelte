@@ -19,6 +19,7 @@
 
 	export let isOpen: boolean;
 	export let sel: any;
+	export let isItemTemplate = false;
 
 	let innerWidth = 0;
 	let draggingGroup = false;
@@ -26,10 +27,15 @@
 	let matches: { [key: string]: boolean } = {};
 
 	/**
+	 * Determine which visibility property to use
+	 */
+	$: visibilityKey = isItemTemplate ? 'item_visibility_template' : 'visibility';
+
+	/**
 	 * Add id's to to each item
 	 */
 	let items =
-		sel?.visibility?.map((item: Condition) => ({
+		sel?.[visibilityKey]?.map((item: Condition) => ({
 			id: generateId($dashboard),
 			...item,
 			...(item.condition === 'and' || item.condition === 'or'
@@ -140,17 +146,17 @@
 	 * Removes all conditions, which in turn also triggers onDestroy
 	 */
 	function handleRemove() {
-		delete sel?.visibility;
+		delete sel?.[visibilityKey];
 		sel = { ...sel };
 		closeModal();
 	}
 
 	/**
 	 * When modal is closed remove any `id` and `collapsed` keys
-	 * and add transformed items to dashboard section visibility
+	 * and add transformed items to dashboard section visibility or item_visibility_template
 	 */
 	onDestroy(() => {
-		sel.visibility = items?.map((item: Condition) => {
+		sel[visibilityKey] = items?.map((item: Condition) => {
 			const condition = { ...item };
 			delete condition.id;
 			delete condition.collapsed;
@@ -167,8 +173,8 @@
 			return condition;
 		});
 
-		if (!sel.visibility?.length) {
-			delete sel.visibility;
+		if (!sel[visibilityKey]?.length) {
+			delete sel[visibilityKey];
 		}
 
 		$dashboard = $dashboard;
@@ -182,10 +188,10 @@
 {#if isOpen}
 	<Modal>
 		<h1 slot="title">
-			{$lang('visibility')}
+			{isItemTemplate ? $lang('item_visibility_template') : $lang('visibility')}
 		</h1>
 
-		<Explanation {sel} {items} {matches} />
+		<Explanation {sel} {items} {matches} {isItemTemplate} />
 
 		<AddConditionButtons bind:items />
 

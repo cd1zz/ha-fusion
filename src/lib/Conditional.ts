@@ -40,12 +40,55 @@ export function handleVisibility($editMode: boolean, sections: Section[], states
  * Filters items based on their visibility conditions
  * Similar to handleVisibility but for individual items
  */
-export function handleItemVisibility($editMode: boolean, items: any[], states: HassEntities) {
+export function handleItemVisibility($editMode: boolean, items: any[], states: HassEntities, section?: Section) {
 	if (!items) return [];
 	
 	return items.filter((item: any) => {
+		// Check if section has item_visibility_template
+		if (section?.item_visibility_template && item?.entity_id) {
+			// Apply template conditions to this item
+			const templateConditions = applyItemVisibilityTemplate(item, section.item_visibility_template);
+			if (templateConditions) {
+				const meetsTemplate = templateConditions.every((condition: any) =>
+					validateConditionForItem($editMode, states, item, condition)
+				);
+				
+				// If item also has individual visibility, both must pass
+				if (item?.visibility) {
+					return meetsTemplate && handleAllConditionsForItem($editMode, states, item);
+				}
+				return meetsTemplate;
+			}
+		}
+		
+		// No template, use item's own visibility (if any)
 		return handleAllConditionsForItem($editMode, states, item);
 	});
+}
+
+/**
+ * Applies item_visibility_template to an item by replacing {item.entity_id} placeholder
+ */
+function applyItemVisibilityTemplate(item: any, template: { conditions?: Condition[] }[]): { conditions?: Condition[] }[] | null {
+	if (!item?.entity_id || !template) return null;
+	
+	// Deep clone and replace placeholders
+	const processedTemplate = JSON.parse(JSON.stringify(template));
+	
+	const replaceEntityPlaceholder = (obj: any): void => {
+		if (!obj || typeof obj !== 'object') return;
+		
+		for (const key in obj) {
+			if (key === 'entity' && obj[key] === '{item.entity_id}') {
+				obj[key] = item.entity_id;
+			} else if (typeof obj[key] === 'object') {
+				replaceEntityPlaceholder(obj[key]);
+			}
+		}
+	};
+	
+	replaceEntityPlaceholder(processedTemplate);
+	return processedTemplate;
 }
 
 /**

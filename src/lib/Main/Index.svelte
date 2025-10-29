@@ -309,7 +309,7 @@
 				>
 					{#each section?.sections as stackSection (`${stackSection?.id}${stackSection?.[SHADOW_ITEM_MARKER_PROPERTY_NAME] ? '_' + stackSection?.[SHADOW_ITEM_MARKER_PROPERTY_NAME] : ''}`)}
 						{@const empty = $editMode && !stackSection?.items?.length}
-						{@const visibleItems = $editMode ? stackSection?.items : handleItemVisibility($editMode, stackSection?.items, $states)}
+						{@const visibleItems = $editMode ? stackSection?.items : handleItemVisibility($editMode, stackSection?.items, $states, stackSection)}
 						<section
 							id={String(stackSection.id)}
 							data-is-dnd-shadow-item-hint={stackSection?.[SHADOW_ITEM_MARKER_PROPERTY_NAME]}
@@ -351,7 +351,7 @@
 				<!-- scenes -->
 			{:else if section?.type === 'scenes'}
 				{@const empty = $editMode && !section?.items?.length}
-				{@const visibleItems = $editMode ? section?.items : handleItemVisibility($editMode, section?.items, $states)}
+				{@const visibleItems = $editMode ? section?.items : handleItemVisibility($editMode, section?.items, $states, section)}
 				<SectionHeader {view} {section} />
 				<div
 					class="scenes"
@@ -382,7 +382,7 @@
 				<!-- normal -->
 			{:else}
 				{@const empty = $editMode && !section?.items?.length}
-				{@const visibleItems = $editMode ? section?.items : handleItemVisibility($editMode, section?.items, $states)}
+				{@const visibleItems = $editMode ? section?.items : handleItemVisibility($editMode, section?.items, $states, section)}
 
 				<SectionHeader {view} {section} />
 
