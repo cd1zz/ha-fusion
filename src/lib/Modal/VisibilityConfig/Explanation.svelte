@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { editMode, lang, states } from '$lib/Stores';
-	import { handleAllConditions } from '$lib/Conditional';
+	import { handleAllConditions, handleAllConditionsForItem } from '$lib/Conditional';
 	import type { Condition } from '$lib/Types';
 
 	export let sel: any;
@@ -8,10 +8,18 @@
 	export let matches: { [key: string]: boolean };
 
 	/**
-	 * Current section visibility
+	 * Determine if sel is an item (has type property) or a section
+	 */
+	$: isItem = sel?.type !== undefined;
+
+	/**
+	 * Current visibility based on whether it's a section or item
 	 */
 	$: visible =
-		matches && handleAllConditions($editMode, $states, { ...sel, visibility: items })
+		matches &&
+		(isItem
+			? handleAllConditionsForItem($editMode, $states, { ...sel, visibility: items })
+			: handleAllConditions($editMode, $states, { ...sel, visibility: items }))
 			? 'visible'
 			: 'hidden';
 </script>
