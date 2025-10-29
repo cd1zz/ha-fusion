@@ -76,366 +76,114 @@ views:
             type: button
             entity_id: sensor.gym_door_status
             name: Gym Door
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.gym_door_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.gym_door_status
-                    state: Unavailable
           - id: 1566728819458
             type: button
             entity_id: sensor.back_door_status
             name: Back Door
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.back_door_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.back_door_status
-                    state: Unavailable
           - id: 2432923758332
             type: button
             entity_id: sensor.basement_guest_window_status
             name: Basement Guest Window
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.basement_guest_window_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.basement_guest_window_status
-                    state: Unavailable
           - id: 8318349264872
             type: button
             entity_id: sensor.basement_pool_table_window_status
             name: Basement Pool Table
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.basement_pool_table_window_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.basement_pool_table_window_status
-                    state: Unavailable
           - id: 5923507345834
             type: button
             entity_id: sensor.dining_room_window_north_status
             name: Dining Room Window North
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.dining_room_window_north_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.dining_room_window_north_status
-                    state: Unavailable
           - id: 4746808042873
             type: button
             entity_id: sensor.dog_door_status
             name: Dog Door
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.dog_door_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.dog_door_status
-                    state: Unavailable
           - id: 2952151221279
             type: button
             entity_id: sensor.entry_window_status
             name: Entry Window
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.entry_window_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.entry_window_status
-                    state: Unavailable
           - id: 5265749964086
             type: button
             entity_id: sensor.front_door_status
             name: Front Door
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.front_door_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.front_door_status
-                    state: Unavailable
           - id: 8386671246593
             type: button
             entity_id: sensor.garage_door_status
             name: Garage Door
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.garage_door_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.garage_door_status
-                    state: Unavailable
           - id: 1505605674599
             type: button
             entity_id: sensor.garage_door_south_status
             name: Garage Door South
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.garage_door_south_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.garage_door_south_status
-                    state: Unavailable
           - id: 5451351848372
             type: button
             entity_id: sensor.garage_north_door_status
             name: Garage North Door
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.garage_north_door_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.garage_north_door_status
-                    state: Unavailable
           - id: 7809761432833
             type: button
             entity_id: sensor.gwen_window_e1_status
             name: Gwen Window E1
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.gwen_window_e1_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.gwen_window_e1_status
-                    state: Unavailable
           - id: 8025356084502
             type: button
             entity_id: sensor.gwen_window_e2_status
             name: Gwen Window E2
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.gwen_window_e2_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.gwen_window_e2_status
-                    state: Unavailable
           - id: 1541074552201
             type: button
             entity_id: sensor.gwen_window_north_status
             name: Gwen Window North
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.gwen_window_north_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.gwen_window_north_status
-                    state: Unavailable
           - id: 7798406403770
             type: button
             entity_id: sensor.kitchen_oven_window_status
             name: Kitchen Oven Window
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.kitchen_oven_window_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.kitchen_oven_window_status
-                    state: Unavailable
           - id: 5609908665649
             type: button
             entity_id: sensor.kitchen_sink_window_status
             name: Kitchen Sink Window
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.kitchen_sink_window_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.kitchen_sink_window_status
-                    state: Unavailable
           - id: 4761599830687
             type: button
             entity_id: sensor.kitchen_table_window_status
             name: Kitchen Table Window
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.kitchen_table_window_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.kitchen_table_window_status
-                    state: Unavailable
           - id: 2485172138984
             type: button
             entity_id: sensor.living_room_window_north_1_status
             name: Living Room Window North 1
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.living_room_window_north_1_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.living_room_window_north_1_status
-                    state: Unavailable
           - id: 2526835058431
             type: button
             entity_id: sensor.living_room_window_north_2_status
             name: Living Room Window North 2
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.living_room_window_north_2_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.living_room_window_north_2_status
-                    state: Unavailable
           - id: 9960045812642
             type: button
             entity_id: sensor.living_room_window_west_1_status
             name: Living Room Window West 1
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.living_room_window_west_1_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.living_room_window_west_1_status
-                    state: Unavailable
           - id: 7439898427378
             type: button
             entity_id: sensor.living_room_window_west_2_status
             name: Living Room Window West 2
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.living_room_window_west_2_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.living_room_window_west_2_status
-                    state: Unavailable
           - id: 3276979842620
             type: button
             entity_id: sensor.mud_room_window_north_status
             name: Mud Room Window North
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.mud_room_window_north_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.mud_room_window_north_status
-                    state: Unavailable
           - id: 1236007509918
             type: button
             entity_id: sensor.mud_room_window_south_status
             name: Mud Room Window South
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.mud_room_window_south_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.mud_room_window_south_status
-                    state: Unavailable
           - id: 4690843181137
             type: button
             entity_id: sensor.office_door_lower_status
             name: Office Door Lower
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.office_door_lower_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.office_door_lower_status
-                    state: Unavailable
           - id: 1547989659337
             type: button
             entity_id: sensor.office_door_upper_status
             name: Office Door Upper
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.office_door_upper_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.office_door_upper_status
-                    state: Unavailable
           - id: 5653392194182
             type: button
             entity_id: sensor.office_window_status
             name: Office Window
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.office_window_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.office_window_status
-                    state: Unavailable
           - id: 9717164798732
             type: button
             entity_id: sensor.will_window_north_status
             name: Will Window North
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.will_window_north_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.will_window_north_status
-                    state: Unavailable
           - id: 8103814188157
             type: button
             entity_id: sensor.will_window_south_status
             name: Will Window South
-            visibility:
-              - condition: or
-                conditions:
-                  - condition: state
-                    entity: sensor.will_window_south_status
-                    state: Open
-                  - condition: state
-                    entity: sensor.will_window_south_status
-                    state: Unavailable
         id: 6773102841356
   - name: Cameras
     id: 5355954703011

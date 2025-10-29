@@ -49,7 +49,8 @@ export function handleItemVisibility($editMode: boolean, items: any[], states: H
 			// Apply template conditions to this item
 			const templateConditions = applyItemVisibilityTemplate(item, section.item_visibility_template);
 			if (templateConditions) {
-				const meetsTemplate = templateConditions.every((condition: any) =>
+				// Template conditions work like section visibility - array elements are OR'd
+				const meetsTemplate = templateConditions.some((condition: any) =>
 					validateConditionForItem($editMode, states, item, condition)
 				);
 				
