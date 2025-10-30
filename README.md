@@ -6,7 +6,9 @@ A modern, easy-to-use and performant custom [Home Assistant](https://www.home-as
 
 [![preview](/static/preview.png)](https://www.youtube.com/watch?v=D8mWruSuPOM)
 
-If you find this project useful, be sure to 🌟 this repository! If you love it, please consider donating! ❤️ <https://www.paypal.com/paypalme/matt8707>
+If you find this project useful, be sure to 🌟 this repository!
+
+> **Note:** This is a development fork of the original [ha-fusion](https://github.com/matt8707/ha-fusion) by matt8707. If you'd like to support the original project, please consider [donating to matt8707](https://www.paypal.com/paypalme/matt8707).
 
 ---
 
@@ -22,9 +24,9 @@ The current state of this project is **pre-beta**. This means that there's basic
 
 For "Operating System" or "Supervised" installation methods, you can install ha-fusion as an add-on:
 
-1. **Add Repository**: To begin, add the ha-fusion add-on repository to your Home Assistant instance. Click the button below or manually add the repository using this URL: <https://github.com/matt8707/addon-ha-fusion>.
+1. **Add Repository**: To begin, add the ha-fusion add-on repository to your Home Assistant instance. Click the button below or manually add the repository using this URL: <https://github.com/cd1zz/addon-ha-fusion>.
 
-   [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fmatt8707%2Faddon-ha-fusion)
+   [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fcd1zz%2Faddon-ha-fusion)
 
 2. **Install Add-on**: After adding the repository, refresh the add-on store page. Locate ha-fusion in the list and proceed with the installation.
 
@@ -34,7 +36,7 @@ For "Operating System" or "Supervised" installation methods, you can install ha-
 
 If you're using the "Container" or "Core" installation methods, ha-fusion can be installed via Docker:
 
-1. **Docker Compose File**: Place your edited copy of the [docker-compose.yml](https://github.com/matt8707/ha-fusion/blob/main/docker-compose.yml) file in a suitable directory.
+1. **Docker Compose File**: Place your edited copy of the [docker-compose.yml](https://github.com/cd1zz/ha-fusion/blob/main/docker-compose.yml) file in a suitable directory.
 
 2. **Create Container**:
    Run the following commands in your terminal to start the container:
@@ -74,7 +76,7 @@ docker run -d \
 
 #### Kubernetes
 
-If you prefer to use Kubernetes, see [Chart README.md](https://github.com/matt8707/ha-fusion/tree/167c320918544416e2f9272e1edad64b7329269a/charts/ha-fusion)
+If you prefer to use Kubernetes, see [Chart README.md](https://github.com/cd1zz/ha-fusion/tree/main/charts/ha-fusion)
 
 </details>
 
@@ -123,7 +125,7 @@ To begin contributing to the project, you'll first need to install node. It's al
 brew install node pnpm
 
 # install
-git clone https://github.com/matt8707/ha-fusion.git
+git clone https://github.com/cd1zz/ha-fusion.git
 cd ha-fusion
 pnpm install
 
