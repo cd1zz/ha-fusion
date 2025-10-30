@@ -32,21 +32,43 @@
 	$: visibilityKey = isItemTemplate ? 'item_visibility_template' : 'visibility';
 
 	/**
-	 * Add id's to to each item
+	 * Capture dashboard reference for ID generation
+	 * to avoid reactive recalculation on every dashboard change
 	 */
-	$: items =
-		sel?.[visibilityKey]?.map((item: Condition) => ({
-			id: generateId($dashboard),
-			...item,
-			...(item.condition === 'and' || item.condition === 'or'
-				? {
-						conditions: item.conditions?.map((condition: Condition) => ({
-							id: generateId($dashboard),
-							...condition
-						}))
-					}
-				: {})
-		})) || [];
+	let dashboardSnapshot = $dashboard;
+
+	/**
+	 * Track the source data to detect actual changes
+	 */
+	let previousVisibilityData: string | undefined;
+	let items: any[] = [];
+
+	/**
+	 * Add id's to each item
+	 * Only regenerate when modal opens or source data changes
+	 */
+	$: visibilityData = sel?.[visibilityKey];
+
+	$: if (isOpen) {
+		const currentData = JSON.stringify(visibilityData);
+		if (currentData !== previousVisibilityData) {
+			dashboardSnapshot = $dashboard;
+			previousVisibilityData = currentData;
+			items =
+				visibilityData?.map((item: Condition) => ({
+					id: generateId(dashboardSnapshot),
+					...item,
+					...(item.condition === 'and' || item.condition === 'or'
+						? {
+								conditions: item.conditions?.map((condition: Condition) => ({
+									id: generateId(dashboardSnapshot),
+									...condition
+								}))
+							}
+						: {})
+				})) || [];
+		}
+	}
 
 	/**
 	 * dnd
