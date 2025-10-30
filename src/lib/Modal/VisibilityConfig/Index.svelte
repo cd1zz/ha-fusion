@@ -34,7 +34,7 @@
 	/**
 	 * Add id's to to each item
 	 */
-	let items =
+	$: items =
 		sel?.[visibilityKey]?.map((item: Condition) => ({
 			id: generateId($dashboard),
 			...item,
